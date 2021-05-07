@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"fmt"
 	"log"
 	"prototype2/domain"
 
@@ -51,13 +50,13 @@ func (c *customerRepository) FindAll() ([]domain.Customer, error) {
 	return customers, nil
 }
 
-func (c *customerRepository) FindByID(id int64) ([]domain.Customer, error) {
+func (c *customerRepository) FindByID(id int64) (*domain.Customer, error) {
 	log.Print("[CustomerRepository]...FindById")
 	var customer domain.Customer
 	result := c.DB.Where("id=?", id).First(&customer)
 	if result.Error != nil {
 		err := result.Error
-		msg := fmt.Sprintf("error getting the customer  with id %d,id")
+		msg := "error getting the customer  with id %d,id"
 		switch err {
 		case gorm.ErrRecordNotFound:
 			err = errors.NotFound.Wrapf(err, msg)
