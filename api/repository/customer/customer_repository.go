@@ -73,7 +73,7 @@ func (c *customerRepository) Delete(customer *domain.Customer) error {
 	result := c.DB.Delete(&customer)
 	if result.Error != nil {
 		err := result.Error
-		msg := "error in deleting post"
+		msg := "error in deleting customer"
 		err = errors.InternalError.Wrapf(err, msg)
 		return err
 	}
