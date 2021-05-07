@@ -2,7 +2,6 @@ package service
 
 import (
 	"log"
-	"math/rand"
 	"prototype2/domain"
 	"prototype2/errors"
 	"strconv"
@@ -37,7 +36,7 @@ func (*customerService) Validate(customer *domain.Customer) error {
 
 func (c *customerService) Create(customer *domain.Customer) (*domain.Customer, error) {
 	log.Print("[CustomerService]...Create")
-	customer.ID = rand.Int63()
+	// customer.ID = rand.Int63()
 	return c.repo.Save(customer)
 }
 

@@ -1,8 +1,8 @@
 package controller
 
 import (
+	"fmt"
 	"log"
-	"math/rand"
 	"net/http"
 	"prototype2/api/responses"
 	"prototype2/domain"
@@ -29,6 +29,7 @@ func NewCustomerController(cus domain.CustomerService) CustomerController {
 
 func (cus *customerController) GetCustomers(c *gin.Context) {
 	log.Printf("[Customer]...GetCustomers")
+	fmt.Printf("[Customer]...GetCustomers")
 	customers, err := cus.customerService.FindAll()
 	if err != nil {
 		responses.HandleError(c, err)
@@ -39,12 +40,14 @@ func (cus *customerController) GetCustomers(c *gin.Context) {
 
 func (cus *customerController) AddCustomer(c *gin.Context) {
 	log.Print("[CustomerControllere]...AddCustomer")
+	fmt.Print("[CustomerControllere]...AddCustomer")
 	var customer domain.Customer
-	if err := c.ShouldBind(&customer); err != nil {
+	if err := c.ShouldBindJSON(&customer); err != nil {
 		err = errors.BadRequest.New("error parsing the input information")
 		responses.HandleError(c, err)
 	}
-	customer.ID = rand.Int63()
+
+	// customer.ID = rand.Int63()
 	if err := cus.customerService.Validate(&customer); err != nil {
 		responses.HandleError(c, err)
 		return
