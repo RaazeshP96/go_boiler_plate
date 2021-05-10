@@ -28,7 +28,7 @@ func NewCustomerService(r domain.CustomerRepository) domain.CustomerService {
 func (*customerService) Validate(customer *domain.Customer) error {
 	log.Print("[CustomerService]...Validate")
 	if customer == nil {
-		err := errors.BadRequest.New("The posr is empty")
+		err := errors.BadRequest.New("The customer is empty")
 		return err
 	}
 	return nil

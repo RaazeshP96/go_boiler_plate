@@ -72,7 +72,7 @@ func (cus *customerController) GetCustomer(c *gin.Context) {
 
 func (cus *customerController) DeleteCustomer(c *gin.Context) {
 	log.Print("[CustomerController]...DeleteCustomer")
-	err := cus.customerService.Delete(c.Param(("id")))
+	err := cus.customerService.Delete(c.Param("id"))
 	if err != nil {
 		responses.HandleError(c, err)
 		return

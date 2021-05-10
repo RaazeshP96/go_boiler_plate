@@ -26,6 +26,9 @@ func SetupRoutes(db *gorm.DB, fb *auth.Client) {
 	// customer Routes
 	routes.CustomerRoutes(httpRouter.GROUP("/customer"), db)
 
+	// product Routes
+	routes.ProductRoutes(httpRouter.GROUP("/product"), db)
+
 	// User Routes
 	routes.UserRoutes(httpRouter.GROUP("/users"), db, fb)
 
