@@ -46,6 +46,7 @@ func (p *productController) AddProduct(c *gin.Context) {
 	if err := c.ShouldBindJSON(&product); err != nil {
 		err = errors.BadRequest.New("error parsing the input information")
 		responses.HandleError(c, err)
+		return
 	}
 	productCreated, err := p.productService.Create(&product)
 	if err != nil {

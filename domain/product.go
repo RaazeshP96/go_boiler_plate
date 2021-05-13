@@ -1,8 +1,15 @@
 package domain
 
+import (
+	"time"
+)
+
 type Product struct {
-	ID    int64   `gorm:"primaryKey autoIncrement"`
-	Price float64 `json:"price"`
+	ID        int64     `gorm:"primaryKey autoIncrement"`
+	Name      string    `json:"product"`
+	Price     float64   `json:"price"`
+	Country   string    `json:"country"`
+	CreatedAt time.Time `gorm:"autoCreateTime"`
 }
 
 type ProductService interface {
