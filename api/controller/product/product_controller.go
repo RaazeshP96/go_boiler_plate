@@ -48,7 +48,10 @@ func (p *productController) AddProduct(c *gin.Context) {
 		responses.HandleError(c, err)
 		return
 	}
+	fmt.Println("Body", c.Request.Body)
+	fmt.Println("Product", product)
 	productCreated, err := p.productService.Create(&product)
+	fmt.Println("Product created", productCreated)
 	if err != nil {
 		responses.HandleError(c, err)
 		return
